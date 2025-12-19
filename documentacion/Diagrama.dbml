@@ -1,0 +1,34 @@
+// Tabla de Seguridad
+Table roles {
+  id integer [primary key]
+  nombre varchar // ADMIN, COACH, PARENT
+}
+
+Table usuarios {
+  id integer [primary key]
+  email varchar [unique]
+  password varchar
+  rol_id integer
+}
+
+// Relación de roles y usuarios
+Ref: usuarios.rol_id > roles.id
+
+// Perfiles
+Table acudientes {
+  id integer [primary key]
+  nombre varchar
+  usuario_id integer
+}
+
+Table deportistas {
+  id integer [primary key]
+  nombre varchar
+  fecha_nacimiento date
+  acudiente_id integer [null] // Obligatorio solo si es menor
+  categoria_id integer
+}
+
+// Relaciones principales
+Ref: acudientes.usuario_id > usuarios.id
+Ref: deportistas.acudiente_id > acudientes.id
