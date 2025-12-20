@@ -35,5 +35,9 @@ public class Usuario {
     )
     private String password;
 
+    @Column(columnDefinition = "BOOLEAN DEFAULT TRUE")
+    @Builder.Default // Para que el Builder sepa que esto empieza en true
+    private Boolean active = true;
+
     // private Role rol;
 }
