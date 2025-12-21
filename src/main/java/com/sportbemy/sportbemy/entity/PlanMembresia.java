@@ -21,12 +21,12 @@ public class PlanMembresia {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "El nombre del plan es obligatorio")
     @Column(nullable = false, length = 100)
+    @NotBlank(message = "El nombre del plan es obligatorio")
     private String nombre;
 
-    @PositiveOrZero(message = "El costo no puede ser negativo")
     @Column(name = "costo_mensual", precision = 15, scale = 2)
+    @PositiveOrZero(message = "El costo no puede ser negativo")
     private BigDecimal costoMensual;
 
     @Column(columnDefinition = "TEXT")
