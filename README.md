@@ -6,7 +6,7 @@
 El objetivo principal es centralizar toda la información operativa del club en una sola plataforma. El sistema permite gestionar desde el registro de usuarios y acudientes hasta el seguimiento detallado del rendimiento deportivo, salud de los jugadores y control financiero.
 
 ##  Tecnologías Principales
-* **Lenguaje:** Java 17+
+* **Lenguaje:** Java 21+
 * **Framework:** Spring Boot 3.x
 * **Base de Datos:** MySQL
 * **Motor de Plantillas:** Thymeleaf (Frontend dinámico)
