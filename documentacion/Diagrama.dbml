@@ -1,34 +1,202 @@
-// Tabla de Seguridad
+// --- MÓDULO 1: SEGURIDAD Y ACCESO ---
+
 Table roles {
-  id integer [primary key]
-  nombre varchar // ADMIN, COACH, PARENT
+  id bigint [primary key, increment]
+  nombre varchar(50) [not null, note: 'ADMIN, JUGADOR, ENTRENADOR, ACUDIENTE']
 }
 
 Table usuarios {
-  id integer [primary key]
-  email varchar [unique]
-  password varchar
-  rol_id integer
-}
-
-// Relación de roles y usuarios
-Ref: usuarios.rol_id > roles.id
-
-// Perfiles
-Table acudientes {
-  id integer [primary key]
-  nombre varchar
-  usuario_id integer
-}
-
-Table deportistas {
-  id integer [primary key]
-  nombre varchar
+  id bigint [primary key, increment]
+  id_rol bigint
+  id_plan_membresia bigint [null]
+  nombre varchar(100)
+  apellido varchar(100)
+  documento varchar(20) [unique]
+  email varchar(150) [unique]
+  password varchar(255)
+  telefono varchar(20)
   fecha_nacimiento date
-  acudiente_id integer [null] // Obligatorio solo si es menor
-  categoria_id integer
+  estado varchar(20) [note: 'ACTIVO, INACTIVO']
+  created_at timestamp [default: `now()`]
 }
 
-// Relaciones principales
-Ref: acudientes.usuario_id > usuarios.id
-Ref: deportistas.acudiente_id > acudientes.id
+Table acudientes {
+  id bigint [primary key, increment]
+  id_menor bigint
+  id_responsable bigint
+  parentesco varchar(50)
+}
+
+// --- MÓDULO 2: ESTRUCTURA DEPORTIVA ---
+
+Table categorias {
+  id bigint [primary key, increment]
+  nombre varchar(100)
+  descripcion text
+}
+
+Table equipos {
+  id bigint [primary key, increment]
+  nombre varchar(100)
+  id_categoria bigint
+  temporada varchar(10)
+  genero varchar(20) [note: 'MASCULINO, FEMENINO, MIXTO']
+}
+
+Table jugadores {
+  id bigint [primary key, increment]
+  id_usuario bigint [unique]
+  id_equipo bigint
+  posicion varchar(50)
+  dorsal int
+  pierna_habil varchar(20) [note: 'DERECHA, IZQUIERDA, AMBIDIESTRO']
+  altura_cm int
+  peso_kg decimal(5,2)
+  rh varchar(5)
+  eps varchar(100)
+}
+
+Table entrenadores {
+  id bigint [primary key, increment]
+  id_usuario bigint [unique]
+  licencia varchar(50)
+  especialidad varchar(100)
+}
+
+Table cuerpo_tecnico_asignacion {
+  id bigint [primary key, increment]
+  id_equipo bigint
+  id_entrenador bigint
+  rol_en_equipo varchar(50)
+}
+
+// --- MÓDULO 3: ENTRENAMIENTO Y RENDIMIENTO ---
+
+Table sedes {
+  id bigint [primary key, increment]
+  nombre varchar(100)
+  direccion varchar(255)
+}
+
+Table entrenamientos {
+  id bigint [primary key, increment]
+  id_equipo bigint
+  id_sede bigint
+  id_entrenador_encargado bigint
+  fecha_hora datetime
+  objetivo text
+}
+
+Table asistencia {
+  id bigint [primary key, increment]
+  id_entrenamiento bigint
+  id_jugador bigint
+  asistio boolean
+  observaciones text
+}
+
+Table test_fisicos {
+  id bigint [primary key, increment]
+  id_jugador bigint
+  id_evaluador bigint
+  fecha date
+  velocidad_max decimal
+  resistencia varchar(100)
+  imc decimal
+}
+
+// --- MÓDULO 4: COMPETICIÓN ---
+
+Table partidos {
+  id bigint [primary key, increment]
+  id_equipo_nuestro bigint
+  id_equipo_rival_interno bigint [null]
+  nombre_rival_externo varchar(150) [null]
+  fecha_hora datetime
+  id_sede bigint
+  es_local boolean
+  resultado_nuestro int
+  resultado_rival int
+}
+
+Table convocatorias {
+  id bigint [primary key, increment]
+  id_partido bigint
+  id_jugador bigint
+  fue_titular boolean
+}
+
+Table estadisticas_partido {
+  id bigint [primary key, increment]
+  id_partido bigint
+  id_jugador bigint
+  goles int [default: 0]
+  asistencias int [default: 0]
+  amarillas int [default: 0]
+  rojas int [default: 0]
+  minutos_jugados int
+}
+
+// --- MÓDULO 5: SALUD Y FINANZAS ---
+
+Table lesiones {
+  id bigint [primary key, increment]
+  id_jugador bigint
+  descripcion varchar(255)
+  fecha_inicio date
+  fecha_fin date
+  estado varchar(20) [note: 'TRATAMIENTO, ALTA']
+}
+
+Table planes_membresia {
+  id bigint [primary key, increment]
+  nombre varchar(100)
+  costo_mensual decimal(15,2)
+  descripcion text
+}
+
+Table pagos {
+  id bigint [primary key, increment]
+  id_usuario bigint
+  monto_pagado decimal(15,2)
+  fecha_pago datetime
+  mes_pagado int
+  anio_pagado int
+  metodo_pago varchar(50)
+  estado varchar(20) [note: 'PENDIENTE, APROBADO, RECHAZADO']
+  comprobante_url varchar(255)
+}
+
+// --- RELACIONES (LLAVES FORÁNEAS) ---
+
+Ref: usuarios.id_rol > roles.id
+Ref: usuarios.id_plan_membresia > planes_membresia.id
+Ref: acudientes.id_menor > usuarios.id
+Ref: acudientes.id_responsable > usuarios.id
+
+Ref: equipos.id_categoria > categorias.id
+Ref: jugadores.id_usuario - usuarios.id
+Ref: jugadores.id_equipo > equipos.id
+
+Ref: entrenadores.id_usuario - usuarios.id
+Ref: cuerpo_tecnico_asignacion.id_equipo > equipos.id
+Ref: cuerpo_tecnico_asignacion.id_entrenador > entrenadores.id
+
+Ref: entrenamientos.id_equipo > equipos.id
+Ref: entrenamientos.id_sede > sedes.id
+Ref: entrenamientos.id_entrenador_encargado > entrenadores.id
+Ref: asistencia.id_entrenamiento > entrenamientos.id
+Ref: asistencia.id_jugador > jugadores.id
+Ref: test_fisicos.id_jugador > jugadores.id
+Ref: test_fisicos.id_evaluador > entrenadores.id
+
+Ref: partidos.id_equipo_nuestro > equipos.id
+Ref: partidos.id_equipo_rival_interno > equipos.id
+Ref: partidos.id_sede > sedes.id
+Ref: convocatorias.id_partido > partidos.id
+Ref: convocatorias.id_jugador > jugadores.id
+Ref: estadisticas_partido.id_partido > partidos.id
+Ref: estadisticas_partido.id_jugador > jugadores.id
+
+Ref: lesiones.id_jugador > jugadores.id
+Ref: pagos.id_usuario > usuarios.id
