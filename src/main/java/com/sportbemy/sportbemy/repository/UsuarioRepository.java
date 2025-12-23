@@ -8,5 +8,10 @@ import java.util.Optional;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+
+    // SELECT * FROM usuarios WHERE email = ?
     Optional<Usuario> findByEmail(String email);
+
+    // SELECT * FROM usuarios WHERE numero_documento = ?
+    Optional<Usuario> findByNumeroDocumento(String numeroDocumento);
 }
