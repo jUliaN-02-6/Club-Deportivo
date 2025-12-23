@@ -29,8 +29,7 @@ public class Jugador {
     private Usuario usuario;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_equipo", nullable = false)
-    @NotNull(message = "El equipo es obligatorio")
+    @JoinColumn(name = "id_equipo", nullable = true)
     private Equipo equipo;
 
     @Column(length = 100, nullable = false)
@@ -39,7 +38,7 @@ public class Jugador {
     private String posicion; // Ej: "Portero", "Delantero"
 
     @Column(nullable = false)
-    @NotBlank(message = "El dorsal es obligatorio")
+    @NotNull(message = "El dorsal es obligatorio")
     @Positive(message = "El dorsal debe ser un numero positivo")
     @Max(value = 99, message = "El dorsal no puede ser mayor a 99")
     private Integer dorsal;

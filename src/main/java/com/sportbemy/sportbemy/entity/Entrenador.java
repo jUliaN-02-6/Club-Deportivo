@@ -28,7 +28,7 @@ public class Entrenador {
 
     @Column(length = 50, nullable = false)
     @NotBlank(message = "La licencia es obligatoria")
-    @Size(min = 3, max = 50, message = "La licencia debe de tener entre 10 y 50 caracteres")
+    @Size(min = 3, max = 50, message = "La licencia debe de tener entre 3 y 50 caracteres")
     private String licencia;
 
     @Column(length = 100, nullable = false)
