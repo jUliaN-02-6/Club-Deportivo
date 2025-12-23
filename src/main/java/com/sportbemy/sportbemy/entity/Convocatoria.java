@@ -23,7 +23,7 @@ public class Convocatoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_partido", nullable = false)
     @NotNull(message = "El partido es obligatorio")
