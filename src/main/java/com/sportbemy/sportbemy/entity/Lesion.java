@@ -25,7 +25,6 @@ public class Lesion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // RELACIÓN: Un jugador puede tener muchas lesiones a lo largo de su carrera.
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_jugador", nullable = false)
     @NotNull(message = "El jugador es obligatorio")
@@ -42,12 +41,11 @@ public class Lesion {
     @NotNull(message = "La fecha de la lesión es obligatoria")
     @PastOrPresent(message = "La fecha de inicio no puede ser futura")
     private LocalDate fechaInicio;
-    
+
     // Puede ser NULL en la base de datos.
     @Column(nullable = true)
     private LocalDate fechaFin;
 
-    // ESTADO: Usamos el Enum para controlar las fases
     @Enumerated(EnumType.STRING)
     @Column(length = 20, nullable = false)
     @NotNull(message = "El estado de la lesión es obligatorio")
