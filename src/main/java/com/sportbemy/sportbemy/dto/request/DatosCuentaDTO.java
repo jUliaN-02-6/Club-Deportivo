@@ -1,10 +1,9 @@
 package com.sportbemy.sportbemy.dto.request;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.Data;
+
+import java.time.LocalDate;
 
 @Data
 public class DatosCuentaDTO {
@@ -22,6 +21,10 @@ public class DatosCuentaDTO {
     @NotBlank(message = "El email es obligatorio")
     @Email(message = "El formato del email no es valido")
     private String email;
+
+    @NotNull(message = "La fecha de nacimiento es obligatoria")
+    @Past(message = "La fecha de nacimiento debe ser en el pasado")
+    private LocalDate fechaNacimiento;
 
     @NotBlank(message = "La contraseña es obligatoria")
     @Size(min = 8, message = "La contraseña debe tener al menos 8 caracteres")
