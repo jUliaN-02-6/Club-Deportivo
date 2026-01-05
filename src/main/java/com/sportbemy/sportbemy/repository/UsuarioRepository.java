@@ -13,5 +13,5 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     Optional<Usuario> findByEmail(String email);
 
     // SELECT * FROM usuarios WHERE numero_documento = ?
-    Optional<Usuario> findByNumeroDocumento(String numeroDocumento);
+    Optional<Usuario> findByDocumento(String Documento);
 }
