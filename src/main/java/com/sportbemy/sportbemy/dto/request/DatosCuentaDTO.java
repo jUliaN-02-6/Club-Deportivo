@@ -17,6 +17,14 @@ public class DatosCuentaDTO {
     @Size(min = 2, max = 100, message = "El apellido debe tener entre 2 y 100 caracteres")
     private String apellido;
 
+    @NotBlank(message = "El documento es obligatorio")
+    @Pattern(regexp = "^[0-9]+$", message = "El documento debe contener solo números")
+    private String documento;
+
+    @NotBlank(message = "El teléfono es obligatorio")
+    @Pattern(regexp = "^\\+?[0-9\\s]{7,15}$", message = "El formato del teléfono no es válido")
+    private String telefono;
+
     // Quitamos unique y nullable (eso lo maneja la entidad y el servicio)
     @NotBlank(message = "El email es obligatorio")
     @Email(message = "El formato del email no es valido")
