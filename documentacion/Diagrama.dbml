@@ -47,6 +47,7 @@ Table jugadores {
   id bigint [primary key, increment]
   id_usuario bigint [unique]
   id_equipo bigint
+  id_categoria [null]
   posicion varchar(50)
   dorsal int
   pierna_habil varchar(20) [note: 'DERECHA, IZQUIERDA, AMBIDIESTRO']
@@ -200,3 +201,4 @@ Ref: estadisticas_partido.id_jugador > jugadores.id
 
 Ref: lesiones.id_jugador > jugadores.id
 Ref: pagos.id_usuario > usuarios.id
+Ref: jugadores.id_categoria > categorias.id
