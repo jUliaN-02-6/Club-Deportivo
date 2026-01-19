@@ -14,4 +14,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
     // SELECT * FROM usuarios WHERE numero_documento = ?
     Optional<Usuario> findByDocumento(String Documento);
+
+    // Devuelve TRUE si existe, FALSE si no. (Ideal para validaciones rápidas)
+    boolean existsByEmail(String email);
 }

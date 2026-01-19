@@ -29,6 +29,10 @@ public class Jugador {
     @NotNull(message = "El usuario es obligatorio")
     private Usuario usuario;
 
+    @ManyToOne(fetch = FetchType.EAGER) // Traemos la categoría automáticamente
+    @JoinColumn(name = "id_categoria") // En la BD se llamará id_categoria
+    private Categoria categoria;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_equipo", nullable = true)
     private Equipo equipo;
