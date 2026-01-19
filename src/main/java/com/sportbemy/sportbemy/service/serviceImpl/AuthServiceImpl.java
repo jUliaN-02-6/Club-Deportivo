@@ -83,10 +83,12 @@ public class AuthServiceImpl implements IAuthService {
     String nombreCategoria = determinarCategoria(edad);
 
     // 3. Buscar la ENTIDAD en la Base de Datos
-    // Usamos el repositorio de categorías que ya inyectaste arriba.
+    // Usamos el repositorio de categorías ya inyectado.
     // Si no existe en la BD, lanzamos error (porque no podemos guardar basura).
     com.sportbemy.sportbemy.entity.Categoria categoriaEntidad = categoriaRepository.findByNombre(nombreCategoria)
-            .orElseThrow(() -> new RuntimeException("Error crítico: La categoría '" + nombreCategoria + "' no existe en la BD. Crea los inserts primero."));
+            .orElseThrow(() -> new RuntimeException("Error crítico: La categoría '" + nombreCategoria + "' no existe en la BD. Crea la Categoria primero."));
+
+    jugador.setCategoria(categoriaEntidad);
 
     //Guardamos el jugador
     jugadorRepository.save(jugador);
@@ -110,7 +112,7 @@ public class AuthServiceImpl implements IAuthService {
         return java.time.Period.between(fechaNacimiento, java.time.LocalDate.now()).getYears();
     }
 
-    // Lógica profesional de asignación de categorías según edad
+    // Lógica de asignación de categorías según edad
     private String determinarCategoria(int edad) {
         if (edad < 6)  return "PRE-BENJAMIN"; // O podrías tener una "Babys" si quieres
         if (edad <= 7) return "PRE-BENJAMIN";
