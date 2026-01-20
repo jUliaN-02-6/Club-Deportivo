@@ -1,6 +1,8 @@
 package com.sportbemy.sportbemy.service.serviceImpl;
 
+import com.sportbemy.sportbemy.dto.request.LoginDTO;
 import com.sportbemy.sportbemy.dto.request.RegistroJugadorDTO;
+import com.sportbemy.sportbemy.dto.response.AuthResponseDTO;
 import com.sportbemy.sportbemy.dto.response.UsuarioResponseDTO;
 import com.sportbemy.sportbemy.entity.Jugador;
 import com.sportbemy.sportbemy.entity.Rol;
@@ -25,6 +27,7 @@ public class AuthServiceImpl implements IAuthService {
     private final RolRepository rolRepository;
     private final CategoriaRepository categoriaRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
 
     @Override
     @Transactional
@@ -64,7 +67,7 @@ public class AuthServiceImpl implements IAuthService {
     //6. CREAR Y GUARDAR EL JUGADOR (Datos deportivos)
     Jugador jugador = new Jugador();
 
-    //¡IMPORTANTE! Aqui unimos las dos tablas;
+    //¡IMPORTANTE! Aquí unimos las dos tablas;
     jugador.setUsuario(usuarioGuardado);// "Este perfil deportivo pertenece a ESTE usuario"
 
     // Copiamos los datos del deporte
@@ -123,5 +126,33 @@ public class AuthServiceImpl implements IAuthService {
         if (edad <= 19) return "JUVENIL";
 
         return "PROFESIONAL"; // 20 años en adelante
+    }
+
+    @Override
+    public AuthResponseDTO login(LoginDTO dto) {
+
+        // 1. Buscar al usuario por el email
+        // Si existe, lanzamos error ("Credenciales inválidas")
+        Usuario usuario = usuarioRepository.findByEmail(dto.getEmail())
+                .orElseThrow(() -> new RuntimeException("Credenciales invalidas"));
+
+        // 2. Verificar la contraseña
+        // passwordEncoder.matches( contraseña que escribió, contraseña encriptada en bd )
+                            // (1) Contraseña escrita   (2) Contraseña encriptada
+        if (!passwordEncoder.matches(dto.getPassword(), usuario.getPassword())) {
+            throw new RuntimeException("Credenciales invalidas");
+        }
+
+        // 3. Generar el Token REAL usando la máquina nueva
+        String token = jwtService.generateToken(usuario.getEmail());
+
+        // 4. Construir y devolver la respuesta
+        return AuthResponseDTO.builder()
+                .mensaje("Login exitoso")
+                .token(token)
+                .email(usuario.getEmail())
+                .rol(usuario.getRol().getNombre())
+                .build();
+
     }
 }

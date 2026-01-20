@@ -1,6 +1,8 @@
 package com.sportbemy.sportbemy.controller;
 
+import com.sportbemy.sportbemy.dto.request.LoginDTO;
 import com.sportbemy.sportbemy.dto.request.RegistroJugadorDTO;
+import com.sportbemy.sportbemy.dto.response.AuthResponseDTO;
 import com.sportbemy.sportbemy.dto.response.UsuarioResponseDTO;
 import com.sportbemy.sportbemy.service.IAuthService;
 import jakarta.validation.Valid;
@@ -36,5 +38,15 @@ public class AuthController {
         // que significa "¡Éxito! Se creó algo nuevo".
         return new ResponseEntity<>(nuevoUsuario, HttpStatus.CREATED);
 
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<AuthResponseDTO> login(@Valid @RequestBody LoginDTO dto) {
+
+        // 1. Llamamos al servicio de login
+        AuthResponseDTO response = authService.login(dto);
+
+        // 2. Devolvemos el Token y los datos con estado 22 (OK)
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
