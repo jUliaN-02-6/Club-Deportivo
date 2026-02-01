@@ -1,9 +1,9 @@
-# ANÁLISIS Y ESPECIFICACIÓN DEL SISTEMA - SPORTBYME
+# ANÁLISIS, ESPECIFICACIÓN Y REQUISITOS DEL SISTEMA - SPORTBYME
 
 | Metadato | Detalle |
 | :--- | :--- |
 | **Proyecto** | SportByMe |
-| **Versión del Documento** | 2.0 (Unificado - Especificación Completa) |
+| **Versión del Documento** | 2.1 (Master - Contexto + Técnica) |
 | **Fecha de Actualización** | Febrero 2026 |
 | **Responsables** | Julián Falla, Julián Garzón, Luisa López |
 | **Estado Actual** | En Desarrollo (Backend Core & Auth) |
@@ -13,85 +13,168 @@
 ## 1. Datos Generales del Proyecto
 * **Nombre del Proyecto:** SportByMe
 * **Objetivo:** Evaluar el sistema actual, identificar limitaciones y proponer una solución tecnológica integral para llevar un historial de deportistas, analizar su evolución y gestionar la administración del club.
+* **Fuentes Consultadas:** Entrevistas con usuarios clave y cuestionarios de diagnóstico.
 
 ---
 
-## 2. Descripción y Actores del Sistema
-El sistema SportByMe es una plataforma integral para la gestión de clubes deportivos. Se han identificado y definido los siguientes actores en el sistema:
+## 2. Identificación de Problemas (Justificación)
+Se han identificado las siguientes falencias en la operación actual que justifican el desarrollo del software:
 
-1.  **ADMIN (ID 2):** Tiene control total del sistema (usuarios, pagos, torneos, configuraciones).
-2.  **ENTRENADOR (ID 3):** Gestiona entrenamientos, partidos, convocatorias y evalúa el rendimiento de los jugadores.
-3.  **JUGADOR (ID 1):** (Deportista) Usuario final que consulta su rendimiento, estadísticas y convocatorias.
-4.  **ACUDIENTE (ID 4):** Responsable legal de los jugadores menores de edad. Recibe notificaciones, gestiona pagos y supervisa el proceso del menor.
-
----
-
-## 3. Reglas de Negocio (Business Rules)
-Estas reglas definen la lógica inteligente del sistema. El Backend debe hacer cumplir estas restricciones automáticamente.
-
-### 3.1 Estructura y Registro
-* **BR01 (Unicidad):** No pueden existir dos usuarios con el mismo correo electrónico o número de documento.
-* **BR02 (Seguridad):** Las contraseñas deben ser almacenadas de forma encriptada (Hash BCrypt).
-* **BR03 (Vinculación):** Si el usuario es menor de 18 años, el sistema obliga a vincular un "Acudiente" responsable.
-* **BR04 (Categorización Automática):** La categoría (Sub-15, Sub-20, etc.) se asigna automáticamente calculando la edad del jugador según su fecha de nacimiento.
-* **BR05 (Cupos de Equipo):** Un equipo no puede tener más de 25 jugadores activos inscritos.
-* **BR06 (Dorsales):** No pueden existir dos jugadores con el mismo número de dorsal en el mismo equipo activo.
-
-### 3.2 Control Disciplinario y Competitivo
-* **BR07 (Jugador Habilitado):** Solo se pueden convocar jugadores activos y sin lesiones vigentes.
-* **BR08 (Validación de Resultado):** La suma de goles individuales debe coincidir con el marcador final del partido.
-* **BR09 (Acumulación de Tarjetas):** Si un jugador acumula **3 tarjetas amarillas** en un torneo, se marca como "SUSPENDIDO" para el siguiente partido.
-* **BR10 (Expulsión Directa):** Un jugador con tarjeta roja no puede ser convocado al siguiente encuentro.
-
-### 3.3 Control Médico y Físico
-* **BR11 (Alerta IMC):** El sistema calculará el Índice de Masa Corporal. Si indica sobrepeso o delgadez extrema, generará una alerta al entrenador.
-* **BR12 (Restricción Post-Lesión):** Un jugador con lesión grave no puede ser convocado hasta 15 días después de su alta médica.
-
-### 3.4 Financiero
-* **BR13 (Mora):** El sistema no permite marcar asistencia a entrenamientos si el jugador tiene el estado "BLOQUEADO POR PAGO".
-* **BR14 (Bloqueo Administrativo):** Si un acudiente acumula 2 meses de deuda, se bloquea su acceso a reportes y estadísticas (pero el jugador sigue activo).
+| Problema | Descripción | Impacto |
+| :--- | :--- | :--- |
+| **1. Gestión Manual** | Uso de hojas de cálculo o papel para datos vitales. | Pérdida de datos y errores humanos. |
+| **2. Comunicación Ineficiente** | Uso informal de WhatsApp. | Desinformación y falta de trazabilidad. |
+| **3. Falta de Trazabilidad** | No hay historial de rendimiento deportivo. | Evaluaciones subjetivas. |
+| **4. Seguimiento Médico** | Lesiones no registradas formalmente. | Riesgo para la salud del deportista. |
+| **5. Pagos Desorganizados** | Control manual de mensualidades. | Morosidad y confusión financiera. |
+| **6. Sin Roles Definidos** | Acceso a información sin restricciones. | Exposición de datos sensibles de menores. |
+| **7. Falta de Reportes** | No existen estadísticas automáticas. | Dificultad para tomar decisiones. |
 
 ---
 
-## 4. Requerimientos Funcionales (RF)
+## 3. Descripción y Actores del Sistema
+El sistema SportByMe es una plataforma integral para la gestión de clubes deportivos con los siguientes actores:
 
-### 4.1 Módulo de Autenticación
-| ID | Requisito | Reglas Asociadas | Estado |
+1.  **ADMIN (ID 2):** Control total (usuarios, pagos, torneos, config).
+2.  **ENTRENADOR (ID 3):** Gestión deportiva (entrenos, partidos, evaluaciones).
+3.  **JUGADOR (ID 1):** Usuario final (consulta rendimiento y convocatorias).
+4.  **ACUDIENTE (ID 4):** Responsable legal (pagos, permisos, notificaciones).
+
+---
+
+## 4. Reglas de Negocio (Business Rules)
+[cite_start]Lógica inteligente que el sistema valida automáticamente[cite: 17, 18, 27].
+
+### 4.1 Estructura y Registro
+* **BR01 (Unicidad):** Email y Documento únicos en BD.
+* **BR02 (Seguridad):** Contraseñas encriptadas (BCrypt).
+* **BR03 (Vinculación):** Menores de 18 años requieren Acudiente.
+* **BR04 (Categoría Automática):** Se calcula según la fecha de nacimiento.
+* **BR05 (Cupos):** Máximo 25 jugadores por equipo.
+* **BR06 (Dorsales):** No repetir números en un mismo equipo.
+
+### 4.2 Control Disciplinario y Competitivo
+* **BR07 (Habilitación):** Solo convocar jugadores activos/sin lesiones.
+* **BR08 (Consistencia):** Goles individuales = Marcador final.
+* **BR09 (Sanción):** 3 Amarillas = Suspensión automática.
+* **BR10 (Expulsión):** Roja directa = Bloqueo siguiente partido.
+
+### 4.3 Control Médico y Financiero
+* **BR11 (Alerta IMC):** Alerta automática por sobrepeso/delgadez.
+* **BR13 (Bloqueo Mora):** No permite asistencia si hay deuda.
+* **BR14 (Bloqueo Admin):** 2 meses deuda = Bloqueo de reportes al acudiente.
+
+---
+
+## 5. Requerimientos Funcionales (RF)
+
+### 5.1 Módulo de Autenticación (RF00)
+| ID | Requisito | Estado / Notas |
+| :--- | :--- | :--- |
+| **RF00.1** | **Autenticación:** Login seguro con Token JWT. | **[IMPLEMENTADO]** |
+| **RF00.2** | **Registro:** Crear cuenta con cálculo de categoría. | **[IMPLEMENTADO]** |
+| **RF00.3** | **Recuperación:** Restablecer contraseña vía email. | Pendiente |
+
+### 5.2 Gestión de Usuarios - Admin (RF01)
+| ID | Requisito | Estado / Notas |
+| :--- | :--- | :--- |
+| **RF01.1** | **Crear Usuarios:** Definir roles (inc. Acudiente). | **[IMPLEMENTADO]** |
+| **RF01.2** | **Editar Usuarios:** Actualizar datos y credenciales. | Pendiente |
+| **RF01.3** | **Activar/Desactivar:** Control de acceso temporal. | Pendiente |
+| **RF01.4** | **Buscar:** Filtros por nombre y rol. | Pendiente |
+
+### 5.3 Gestión de Equipos (RF02)
+| ID | Requisito | Estado / Notas |
+| :--- | :--- | :--- |
+| **RF02.1** | **Crear Categorías:** Organización por edad. | **[PARCIAL]** (Lógica auto) |
+| **RF02.3** | **Asignar:** Vincular jugadores a equipos. | Pendiente |
+
+### 5.4 Gestión Deportiva (RF03-RF05)
+| ID | Requisito | Estado / Notas |
+| :--- | :--- | :--- |
+| **RF03.1** | **Entrenamientos:** Crear plantillas y horarios. | Pendiente |
+| **RF04.1** | **Torneos:** Registrar partidos y calendarios. | Pendiente |
+| **RF04.4** | **Resultados:** Cargar marcadores y stats. | Pendiente |
+| **RF05.1** | **Asistencias:** Control de presencia. | Pendiente |
+
+### 5.5 Gestión Financiera (RF06)
+| ID | Requisito | Estado / Notas |
+| :--- | :--- | :--- |
+| **RF06.1** | **Pagos:** Registrar mensualidades. | Pendiente |
+| **RF06.5** | **Reportes Financieros:** Control de caja. | Pendiente |
+
+### 5.6 Módulos de Roles Específicos (RF08-RF18)
+| ID | Requisito | Rol | Estado |
 | :--- | :--- | :--- | :--- |
-| **RF00.1** | **Autenticación:** Iniciar sesión con credenciales válidas y obtener JWT. | BR02 | **[IMPLEMENTADO]** |
-| **RF00.2** | **Registro:** Crear cuentas con validación de datos. | BR01, BR03, BR04 | **[IMPLEMENTADO]** |
-| **RF00.3** | **Recuperar Contraseña:** Restablecer acceso vía email. | BR02 | Pendiente |
-
-### 4.2 Módulo de Gestión Deportiva
-| ID | Requisito | Reglas Asociadas | Estado |
-| :--- | :--- | :--- | :--- |
-| **RF02.1** | **Gestión de Equipos:** Crear y organizar equipos. | BR05 | Pendiente |
-| **RF04.1** | **Convocatorias:** Seleccionar jugadores para partidos. | BR07, BR09, BR10 | Pendiente |
-| **RF09.1** | **Ficha Médica:** Consultar datos antropométricos e IMC. | BR11 | **[PARCIAL]** (Datos en BD) |
-
-### 4.3 Módulo Financiero
-| ID | Requisito | Reglas Asociadas | Estado |
-| :--- | :--- | :--- | :--- |
-| **RF06.1** | **Registro de Pagos:** Ingresar pagos de mensualidades. | BR14 | Pendiente |
-| **RF06.2** | **Control de Mora:** Cambiar estados de solvencia. | BR13 | Pendiente |
+| **RF09.1** | **Consultar Perfiles:** Ver datos técnicos/médicos. | Entrenador | **[IMPLEMENTADO]** |
+| **RF10.1** | **Convocatorias:** Notificar a Jugador/Acudiente. | Entrenador | Pendiente |
+| **RF13.1** | **Mi Perfil:** Ver estadísticas propias. | Jugador | **[IMPLEMENTADO]** |
+| **RF18.1** | **Consultar Acudido:** Ver datos del hijo. | Acudiente | **[IMPLEMENTADO]** |
 
 ---
 
-## 5. Requerimientos No Funcionales (RNF)
+## 6. Requerimientos No Funcionales (RNF)
 
 | ID | Categoría | Descripción | Prioridad |
 | :--- | :--- | :--- | :--- |
-| **RNF01** | **Seguridad** | Autenticación mediante **JWT**. Control por roles (Spring Security). | Alta |
-| **RNF02** | **Seguridad** | Cifrado de contraseñas (BCrypt) y HTTPS. | Alta |
+| **RNF01** | **Seguridad** | Autenticación **JWT** y Roles. | Alta |
+| **RNF02** | **Cifrado** | Contraseñas **BCrypt** y HTTPS (TLS 1.3). | Alta |
 | **RNF07** | **Rendimiento** | Respuestas API < 2 seg. | Alta |
-| **RNF13** | **Compatibilidad** | Accesible desde Web y Móvil (Android/iOS). | Alta |
+| **RNF09** | **Escalabilidad** | Arquitectura Modular (Backend Java). | Media |
+| **RNF13** | **Compatibilidad** | Web, Android e iOS. | Alta |
 
 ---
 
-## 6. Infraestructura Tecnológica
-* **Lenguaje:** Java 17 (Spring Boot 3).
-* **Base de Datos:** MySQL / MariaDB.
-* **Seguridad:** Spring Security + JWT.
-* **Herramientas:** GitHub, IntelliJ, Postman.
+## 7. Infraestructura Tecnológica (Actualizada)
+
+| Componente | Tecnología | Justificación |
+| :--- | :--- | :--- |
+| **Lenguaje Backend** | **Java 17** | Estándar empresarial y robusto. |
+| **Framework** | **Spring Boot 3** | Seguridad y rapidez en APIs REST. |
+| **Base de Datos** | **MySQL / MariaDB** | Integridad relacional de datos. |
+| **Entorno Local** | **XAMPP / Docker** | Simulación de servidor DB. |
+| **Control Versiones** | **Git / GitHub** | Trabajo colaborativo y backups. |
+| **Frontend (Futuro)** | **HTML/JS/Framework** | Interfaz de usuario responsiva. |
+
+---
+
+## 8. Cumplimiento de Normas y Protocolos
+[cite_start]El sistema garantiza el cumplimiento legal, crucial por el manejo de menores[cite: 63, 64, 66].
+
+| Norma | Descripción y Aplicación |
+| :--- | :--- |
+| **Ley 1581 (Datos Personales)** | Tratamiento seguro y autorizado de datos de menores. |
+| **Habeas Data Deportivo** | Derecho a consultar, actualizar y eliminar información. |
+| **ISO/IEC 27001** | Cifrado, backups y control de acceso seguro. |
+| **OWASP Top 10** | Protección contra inyecciones SQL y ataques XSS. |
+| **WCAG 2.1 (Accesibilidad)** | Interfaz amigable para todo tipo de usuario. |
+
+---
+
+## 9. Matriz de Riesgos
+
+| Riesgo | Nivel | Mitigación Implementada |
+| :--- | :--- | :--- |
+| **R1. Fuga de Datos** | Alto | Cifrado BCrypt y Seguridad JWT. |
+| **R2. Fallos Sistema** | Alto | Pruebas de carga y monitoreo. |
+| **R3. Uso no autorizado** | Alto | Filtros de Seguridad (Roles). |
+| **R7. Datos Inexactos** | Medio | Validaciones estrictas en Backend. |
+| **R9. Legal** | Medio | Términos y condiciones claros. |
+
+---
+
+## 10. Conclusiones y Recomendaciones
+
+### 10.1 Conclusiones
+1.  **Digitalización Urgente:** Elimina el riesgo de pérdida de datos físicos.
+2.  **Centralización:** Integra lo deportivo, médico y financiero en un solo lugar.
+3.  **Seguridad:** El uso de Java Spring Boot garantiza protección profesional.
+4.  **Transparencia:** Acudientes y directivos tienen claridad real del estado del club.
+
+### 10.2 Recomendaciones
+1.  **Fase Piloto:** Iniciar con una categoría pequeña para validar.
+2.  **UX Móvil:** Priorizar el diseño para celulares (donde entran los padres).
+3.  **Capacitación:** Formar a los entrenadores en el uso de la app.
+4.  **Backups:** Asegurar copias de seguridad automáticas de la Base de Datos.
 
 ---
