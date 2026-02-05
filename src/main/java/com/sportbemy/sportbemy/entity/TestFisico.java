@@ -28,9 +28,9 @@ public class TestFisico {
     private Jugador jugador;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_entrenador", nullable = false)
+    @JoinColumn(name = "id_evaluador", nullable = false)
     @NotNull(message = "El entrenador es obligatorio")
-    private Entrenador entrenador;
+    private Usuario evaluador;
 
     @Column(nullable = false)
     @NotNull(message = "La fecha del test es obligatoria")

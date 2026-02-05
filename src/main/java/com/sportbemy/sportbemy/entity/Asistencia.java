@@ -29,7 +29,7 @@ public class Asistencia {
     private Jugador jugador;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_entrenamientos", nullable = false)
+    @JoinColumn(name = "id_entrenamiento", nullable = false)
     @NotNull(message = "El entrenamiento es obligatorio")
     private Entrenamiento entrenamiento;
 
