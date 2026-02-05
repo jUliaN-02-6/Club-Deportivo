@@ -51,8 +51,8 @@ Table jugadores {
   posicion varchar(50)
   dorsal int
   pierna_habil varchar(20) [note: 'DERECHA, IZQUIERDA, AMBIDIESTRO']
-  altura_cm int
-  peso_kg decimal(5,2)
+  altura int
+  peso decimal(5,2)
   rh varchar(5)
   eps varchar(100)
 }
@@ -159,7 +159,7 @@ Table planes_membresia {
 Table pagos {
   id bigint [primary key, increment]
   id_usuario bigint
-  monto_pagado decimal(15,2)
+  monto decimal(15,2)
   fecha_pago datetime
   mes_pagado int
   anio_pagado int
