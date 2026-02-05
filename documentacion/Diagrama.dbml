@@ -83,12 +83,12 @@ Table entrenamientos {
   id bigint [primary key, increment]
   id_equipo bigint
   id_sede bigint
-  id_entrenador_encargado bigint
+  id_entrenador bigint
   fecha_hora datetime
   objetivo text
 }
 
-Table asistencia {
+Table asistencias {
   id bigint [primary key, increment]
   id_entrenamiento bigint
   id_jugador bigint
@@ -111,7 +111,7 @@ Table test_fisicos {
 Table partidos {
   id bigint [primary key, increment]
   id_equipo_nuestro bigint
-  id_equipo_rival_interno bigint [null]
+  id_rival_interno bigint [null]
   nombre_rival_externo varchar(150) [null]
   fecha_hora datetime
   id_sede bigint
@@ -189,7 +189,7 @@ Ref: entrenamientos.id_entrenador_encargado > entrenadores.id
 Ref: asistencia.id_entrenamiento > entrenamientos.id
 Ref: asistencia.id_jugador > jugadores.id
 Ref: test_fisicos.id_jugador > jugadores.id
-Ref: test_fisicos.id_evaluador > entrenadores.id
+Ref: test_fisicos.id_evaluador > usuarios.id
 
 Ref: partidos.id_equipo_nuestro > equipos.id
 Ref: partidos.id_equipo_rival_interno > equipos.id
