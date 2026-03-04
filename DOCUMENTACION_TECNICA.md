@@ -94,7 +94,7 @@ Estas reglas definen la lógica inteligente del sistema y las restricciones que 
 | ID | Requisito | Reglas Asociadas | Estado Actual |
 | :--- | :--- | :--- | :--- |
 | **RF02.1** | **Crear Categorías:** Definir grupos (ej. Sub-8, Sub-12). | - | **[PARCIAL]** (Lógica auto) |
-| **RF02.2** | **Editar Categorías:** Reflejar cambios organizativos. | - | Pendiente |
+| **RF02.2** | **Editar Categorías:** Reflejar cambios organizativos (incluye desvincular jugadores o entrenadores). | - | Pendiente |
 | **RF02.3** | **Asignar Miembros:** Vincular jugadores y entrenadores a equipos. | BR04, BR05, BR06 (Dorsales) | Pendiente |
 | **RF02.4** | **Eliminar Categorías:** Borrar equipos inactivos. | - | Pendiente |
 
