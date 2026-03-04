@@ -102,7 +102,7 @@ Estas reglas definen la lógica inteligente del sistema y las restricciones que 
 | ID | Requisito | Reglas Asociadas | Estado Actual |
 | :--- | :--- | :--- | :--- |
 | **RF03.1** | **Crear Plantillas:** Bases para sesiones de entrenamiento. | - | Pendiente |
-| **RF03.2** | **Asignar Horarios:** Optimizar uso de canchas/recursos. | - | Pendiente |
+| **RF03.2** | **Asignar Horarios:** Optimizar uso de canchas/recursos. Validar disponibilidad de canchas | - | Pendiente |
 | **RF03.3** | **Editar Plantillas:** Modificar disponibilidad. | - | Pendiente |
 | **RF03.4** | **Eliminar Plantillas:** Borrar datos obsoletos. | - | Pendiente |
 | **RF03.5** | **Buscar Entrenamientos:** Filtros por fecha, categoría o equipo. | - | Pendiente |
