@@ -118,11 +118,11 @@ Estas reglas definen la lógica inteligente del sistema y las restricciones que 
 ### [cite_start]5.6 Gestión Académica/Deportiva (RF05) [cite: 21, 22]
 | ID | Requisito | Reglas Asociadas | Estado Actual |
 | :--- | :--- | :--- | :--- |
-| **RF05.1** | **Registrar Asistencias:** Control de presencia (Admin). | BR13 | Pendiente |
-| **RF05.2** | **Evaluaciones:** Crear métricas de desempeño técnicas/físicas. | BR11 | Pendiente |
-| **RF05.3** | **Consultar Registros:** Ver historial de asistencias/evaluaciones. | - | Pendiente |
-| **RF05.4** | **Editar Registros:** Corrección de errores en evaluaciones. | - | Pendiente |
-| **RF05.5** | **Buscar Registros:** Localizar jugadores o equipos específicos. | - | Pendiente |
+| **RF05.1** | **Registrar Asistencias:** Control de presencia (Admin, Entrenador). | BR13 | Pendiente |
+| **RF05.2** | **Evaluaciones:** Crear métricas de desempeño técnicas/físicas (Entrenador). | BR11 | Pendiente |
+| **RF05.3** | **Consultar Registros:** Ver historial de asistencias/evaluaciones (Admin). | - | Pendiente |
+| **RF05.4** | **Editar Registros:** Corrección de errores en evaluaciones (Admin). | - | Pendiente |
+| **RF05.5** | **Buscar Registros:** Localizar jugadores o equipos específicos (Admin). | - | Pendiente |
 
 ### [cite_start]5.7 Gestión Financiera (RF06) [cite: 23, 24]
 | ID | Requisito | Reglas Asociadas | Estado Actual |
