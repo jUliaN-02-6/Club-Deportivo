@@ -84,7 +84,7 @@ Estas reglas definen la lógica inteligente del sistema y las restricciones que 
 | ID | Requisito | Reglas Asociadas | Estado Actual |
 | :--- | :--- | :--- | :--- |
 | **RF01.1** | **Crear Usuarios:** Crear entrenadores, deportistas y acudientes. | BR01, BR03 | **[IMPLEMENTADO]** |
-| **RF01.2** | **Editar Usuarios:** Actualizar datos personales y credenciales. | - | Pendiente |
+| **RF01.2** | **Editar Usuarios:** Actualizar datos personales y credenciales. | BR01, BR04 | Pendiente |
 | **RF01.3** | **Activar/Desactivar:** Controlar accesos sin eliminar cuenta. | - | Pendiente |
 | **RF01.4** | **Buscar Usuarios:** Filtros por nombre, rol y estado. | - | Pendiente |
 | **RF01.5** | **Exportar:** Descargar listados en CSV para auditoría. | - | Pendiente |
