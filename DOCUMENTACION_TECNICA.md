@@ -76,62 +76,60 @@ Estas reglas definen la lógica inteligente del sistema y las restricciones que 
 ### [cite_start]5.1 Módulo de Autenticación (RF00) [cite: 14, 15]
 | ID | Requisito | Reglas Asociadas | Estado Actual |
 | :--- | :--- | :--- | :--- |
-| **RF00.1** | **Autenticación:** Iniciar sesión con credenciales válidas (JWT). | BR02 | **[IMPLEMENTADO]** |
-| **RF00.2** | **Registro:** Crear cuenta con validación de datos y cálculo de categoría. | BR01, BR03, BR04 | **[IMPLEMENTADO]** |
+| **RF00.1** | **Autenticación:** (Iniciar sesión) Acceder al sistema (Incluye validacion con credenciales JWT. Incluye opciones de bloquear cuenta tras 3 fallos y recuperar contraseña) . | BR02 | **[IMPLEMENTADO]** |
+| **RF00.2** | **Registro:** (Crear cuenta) Crear usuario nuevo. (incluye validacion de datos unicos y calculo de categorias. Incluye opcion de buscar y vincular jugador si el rol es Acudiente). | BR01, BR03, BR04 | **[IMPLEMENTADO]** |
 | **RF00.3** | **Recuperación:** Restablecer contraseña vía "¿Olvidaste tu contraseña?". | BR02 | Pendiente |
 
 ### [cite_start]5.2 Gestión de Usuarios - Admin (RF01) [cite: 15, 16, 17]
 | ID | Requisito | Reglas Asociadas | Estado Actual |
 | :--- | :--- | :--- | :--- |
-| **RF01.1** | **Crear Usuarios:** Crear entrenadores, deportistas y acudientes. | BR01, BR03 | **[IMPLEMENTADO]** |
-| **RF01.2** | **Editar Usuarios:** Actualizar datos personales y credenciales. | BR01, BR04 | Pendiente |
-| **RF01.3** | **Activar/Desactivar:** Controlar accesos sin eliminar cuenta. | - | Pendiente |
-| **RF01.4** | **Buscar Usuarios:** Filtros por nombre, rol y estado. | - | Pendiente |
-| **RF01.5** | **Exportar:** Descargar listados en CSV para auditoría. | - | Pendiente |
-| **RF01.6** | **Eliminar:** Borrar usuarios inactivos (depuración). | - | Pendiente |
+| **RF01.1** | **Crear Usuarios:** Crear entrenadores, deportistas y acudientes (Incluye validacion de unicidad y calculo de categoria. Incluye opcion de vincular acudiente si es menor de 18 años). | BR01, BR03 | **[IMPLEMENTADO]** |
+| **RF01.2** | **Editar Usuarios:** Extiende del RF01.4. Actualizar datos personales y credenciales (Incluye validacion de unicidad y recalculo de categoria). | BR01, BR04 | Pendiente |
+| **RF01.3** | **Activar/Desactivar:** Extiende del RF01.4. Controlar accesos sin eliminar cuenta. | - | Pendiente |
+| **RF01.4** | **Buscar Usuarios:** Filtros por nombre, rol y estado (Incluye opcion de exportar el listado a CSV). | - | Pendiente |
+| **RF01.5** | **Exportar:** Extiende del RF01.4. Descargar listados (Incluye opcion de Excel/CSV para manejo y auditoria de datos, o PDF para reportes oficiales de impresion). | - | Pendiente |
+| **RF01.6** | **Eliminar:** Extiende del RF01.4. Borrar usuarios inactivos (depuración). | - | Pendiente |
 
 ### [cite_start]5.3 Gestión de Equipos y Categorías (RF02) [cite: 17, 18]
 | ID | Requisito | Reglas Asociadas | Estado Actual |
 | :--- | :--- | :--- | :--- |
 | **RF02.1** | **Crear Categorías:** Definir grupos (ej. Sub-8, Sub-12). | - | **[PARCIAL]** (Lógica auto) |
-| **RF02.2** | **Editar Categorías:** Reflejar cambios organizativos (incluye desvincular jugadores o entrenadores). | - | Pendiente |
-| **RF02.3** | **Asignar Miembros:** Vincular jugadores y entrenadores a equipos. | BR04, BR05, BR06 (Dorsales) | Pendiente |
-| **RF02.4** | **Eliminar Categorías:** Borrar equipos inactivos. | - | Pendiente |
+| **RF02.2** | **Consultar Categorias:** Ver el listado de equipos y su plantilla actual | - | Pendiente | 
+| **RF02.3** | **Editar/Eliminar Categorías:** Reflejar cambios organizativos o borrar equipos inactivos (Extensiones directas de RF02.2. Editar incluye la opcion de desvincular miembros). | - | Pendiente |
+| **RF02.4** | **Asignar Miembros:** Vincular jugadores y entrenadores a equipos (Extenciones de RF2.2. Incluye validacion obligatoria de edad, cupo y dorsal). | BR04, BR05, BR06 (Dorsales) | Pendiente |
 
 ### [cite_start]5.4 Gestión de Entrenamientos - Admin (RF03) [cite: 18, 19, 20]
 | ID | Requisito | Reglas Asociadas | Estado Actual |
 | :--- | :--- | :--- | :--- |
 | **RF03.1** | **Crear Plantillas:** Bases para sesiones de entrenamiento. | - | Pendiente |
-| **RF03.2** | **Asignar Horarios:** Optimizar uso de canchas/recursos. Validar disponibilidad de canchas | - | Pendiente |
+| **RF03.2** | **Asignar Horarios:** Optimizar uso de canchas/recursos. (Incluye validacion obligatoria de disponibilidad de canchas) | - | Pendiente |
 | **RF03.3** | **Editar Plantillas:** Modificar disponibilidad. | - | Pendiente |
 | **RF03.4** | **Eliminar Plantillas:** Borrar datos obsoletos. | - | Pendiente |
-| **RF03.5** | **Buscar Entrenamientos:** Filtros por fecha, categoría o equipo. | - | Pendiente |
+| **RF03.5** | **Buscar Entrenamientos:** Ver listado de sesiones de entrenamientos (Incluye opcion de aplicar filtros por fecha, categoría o equipo). | - | Pendiente |
 
 ### [cite_start]5.5 Gestión de Competiciones (RF04) [cite: 20, 21]
 | ID | Requisito | Reglas Asociadas | Estado Actual |
 | :--- | :--- | :--- | :--- |
 | **RF04.1** | **Registrar Torneos:** Estructurar calendarios y partidos. | - | Pendiente |
-| **RF04.2** | **Editar Torneos:** Ajustar fechas o participantes. | - | Pendiente |
-| **RF04.3** | **Eliminar Torneos:** Depurar competiciones canceladas. | - | Pendiente |
-| **RF04.4** | **Cargar Resultados:** Registrar marcadores, posiciones y estadísticas. | BR08, BR09 | Pendiente |
+| **RF04.2** | **Consultar Torneos:** Ver el listado de competiciones activas e inactivas. | - | Pendiente |
+| **RF04.3** | **Editar/Eliminar Torneos:** Ajustar fechas, participantes o depurar cancelados. (Extensiones de RF04.2. Editar incluye opcion de reprogramar partidos o modificar participantes). | - | Pendiente |
+| **RF04.4** | **Cargar Resultados:** Registrar marcadores, posiciones y estadísticas (Incluye validacion obligatoria del marcador y verificaion de acumulacion de tarjetas). | BR08, BR09 | Pendiente |
 
 ### [cite_start]5.6 Gestión Académica/Deportiva (RF05) [cite: 21, 22]
 | ID | Requisito | Reglas Asociadas | Estado Actual |
 | :--- | :--- | :--- | :--- |
-| **RF05.1** | **Registrar Asistencias:** Control de presencia (Admin, Entrenador). | BR13 | Pendiente |
-| **RF05.2** | **Evaluaciones:** Crear métricas de desempeño técnicas/físicas (Entrenador). | BR11 | Pendiente |
-| **RF05.3** | **Consultar Registros:** Ver historial de asistencias/evaluaciones (Admin). | - | Pendiente |
-| **RF05.4** | **Editar Registros:** Corrección de errores en evaluaciones (Admin). | - | Pendiente |
-| **RF05.5** | **Buscar Registros:** Localizar jugadores o equipos específicos (Admin). | - | Pendiente |
+| **RF05.1** | **Registrar Asistencias:** Control de presencia (Admin, Entrenador) (Incluye validacion  obligatoria del estado financiero) (Admin, Entrenador). | BR13 | Pendiente |
+| **RF05.2** | **Registrar Evaluaciones:** Crear métricas de desempeño técnicas/físicas (Entrenador, Admin) (Incluye calculo automatico de IMC y generacion de alerta). | BR11 | Pendiente |
+| **RF05.3** | **Consultar Registros:** Ver historial de asistencias/evaluaciones y localizar jugadores o equipos (Admin, Entrenador) (Incluye opcion de aplicar filtros de busqueda). | - | Pendiente |
+| **RF05.4** | **Editar Registros:** Corrección de errores en evaluaciones (Admin, Entrenador) (Extension de RF05.3. Incluye recalculo obligatorio de IMC y alerta). | - | Pendiente |
 
 ### [cite_start]5.7 Gestión Financiera (RF06) [cite: 23, 24]
 | ID | Requisito | Reglas Asociadas | Estado Actual |
 | :--- | :--- | :--- | :--- |
-| **RF06.1** | **Registrar Pagos:** Mensualidades, inscripciones, uniformes. | BR14 | Pendiente |
-| **RF06.2** | **Editar Estado:** Cambiar entre Pendiente/Pagado. | - | Pendiente |
-| **RF06.3** | **Eliminar Pagos:** Borrar registros erróneos. | - | Pendiente |
-| **RF06.4** | **Consultar Facturas:** Trazabilidad de cobros generados. | - | Pendiente |
-| **RF06.5** | **Reportes Financieros:** Control de caja administrativo. | - | Pendiente |
+| **RF06.1** | **Registrar Pagos:** Mensualidades, inscripciones, uniformes (Incluye generacion de factura y actualizacion del estado de bloqueo). | BR14 | Pendiente |
+| **RF06.2** | **Editar/Eliminar Pagos:** Cambiar estado (Pendiente/Pagado) o borrar registros erroneos. (Extensiones de RF06.3. Editar incluye actualizacion del estado de bloqueo) | BR14 | Pendiente |
+| **RF06.3** | **Consultar Pagos/Facturas:** Trazabilidad de cobros generados (Incluye opcion de aplicar filtros de busqueda por fechas/acudiente y la opcion de generar/descargar el comprobante de pago). | - | Pendiente |
+| **RF06.4** | **Reportes Financieros:** Control de caja administrativo (Incluye opcion de exportar documento en Excel/PDF). | - | Pendiente |
 
 ### [cite_start]5.8 Reportes Generales (RF07) [cite: 24, 25]
 | ID | Requisito | Reglas Asociadas | Estado Actual |
