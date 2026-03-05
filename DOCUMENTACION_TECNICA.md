@@ -144,8 +144,10 @@ Estas reglas definen la lógica inteligente del sistema y las restricciones que 
 | ID | Requisito | Reglas Asociadas | Estado Actual |
 | :--- | :--- | :--- | :--- |
 | **RF08.1** | **Crear Planes:** Diseñar sesiones para su equipo. | - | Pendiente |
-| **RF08.2** | **Asignar Sesiones:** Vincular plan a categoría/jugador/equipo. | - | Pendiente |
-| **RF08.3** | **Tomar Asistencia:** Registrar presencia en cancha. | BR13 | Pendiente |
+| **RF08.2** | **Consultar Planes:** Ver el listado y detalles de los planes creados. | - | Pendiente |
+| **RF08.3** | **Editar/Eliminar Planes** Modificar ejercicios o borrar planes obsoletos. | - | Pendiente |
+| **RF08.4** | **Asignar Sesiones:** Vincular plan a categoría/jugador/equipo. | - | Pendiente |
+| **RF08.5** | **Tomar Asistencia:** Registrar presencia en cancha. | BR13 | Pendiente |
 
 ### [cite_start]5.10 Gestión Entrenador - Jugadores (RF09) [cite: 25, 26]
 | ID | Requisito | Reglas Asociadas | Estado Actual |
