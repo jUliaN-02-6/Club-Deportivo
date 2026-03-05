@@ -153,7 +153,7 @@ Estas reglas definen la lógica inteligente del sistema y las restricciones que 
 | ID | Requisito | Reglas Asociadas | Estado Actual |
 | :--- | :--- | :--- | :--- |
 | **RF09.1** | **Consultar Perfil:** Ver datos técnicos, físicos y médicos (Incluye opcion de buscar por nombre o filtarr por categoria). | BR11 (IMC) | **[IMPLEMENTADO]** |
-| **RF09.2** | **Registrar Observaciones:** Notas tácticas sobre el jugador (Incluye opcion de enciar notificacion directa al acudiente). | - | Pendiente |
+| **RF09.2** | **Registrar Observaciones:** Notas tácticas sobre el jugador (Incluye opcion de enviar notificacion directa al acudiente). | - | Pendiente |
 | **RF09.3** | **Calificar Rendimiento:** Asignar puntajes periódicos. | - | Pendiente |
 
 ### [cite_start]5.11 Gestión Entrenador - Partidos (RF10) [cite: 26, 27]
