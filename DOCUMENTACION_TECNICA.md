@@ -69,6 +69,17 @@ Estas reglas definen la lógica inteligente del sistema y las restricciones que 
 * **BR15 (Cupo de Extranjeros):** El sistema no permitirá inscribir más de 3 jugadores con nacionalidad extranjera en el mismo equipo competitivo.
 * **BR16 (Ventana de Fichajes):** Solo se permite registrar nuevos jugadores en un equipo competitivo durante los meses de Enero y Julio.
 
+### 4.5 Comunicacion y Privacidad
+* **BR17 (Restricciones y Permisos de Chat):** El sistema debe restringir el envío de mensajes directos según el rol del usuario, aplicando la siguiente matriz de permisos:
+
+Administrador: Puede enviar mensajes a cualquier usuario del sistema (Entrenadores, Deportistas, Acudientes).
+
+Entrenador: Solo puede enviar mensajes a los Administradores, a los Acudientes de sus equipos asignados, y a los Deportistas de sus equipos (Si el deportista es menor de edad, el sistema debe enviar automáticamente una copia del mensaje a su Acudiente vinculado).
+
+Acudiente: Solo puede enviar mensajes a la Administración y a los Entrenadores de los equipos donde estén sus hijos. (No puede contactar a otros niños).
+
+Deportista: Solo puede enviar mensajes a la Administración y a sus Entrenadores actuales.
+
 ---
 
 ## 5. Requerimientos Funcionales (Detallados)
@@ -134,38 +145,42 @@ Estas reglas definen la lógica inteligente del sistema y las restricciones que 
 ### [cite_start]5.8 Reportes Generales (RF07) [cite: 24, 25]
 | ID | Requisito | Reglas Asociadas | Estado Actual |
 | :--- | :--- | :--- | :--- |
-| **RF07.1** | **Generar Reportes:** Consolidado deportivo y financiero. | - | Pendiente |
-| **RF07.2** | **Filtrar Reportes:** Por fecha, usuario o entidad. | - | Pendiente |
-| **RF07.3** | **Exportar Reportes:** Descarga en PDF o CSV. | - | Pendiente |
+| **RF07.1** | **Generar Reportes:** Consolidado deportivo y financiero (Incluye opcion de aplicar filtros y exportar el documento). | - | Pendiente |
+| **RF07.2** | **Filtrar Reportes:** Por fecha, usuario o entidad (Extension de RF07.1). | - | Pendiente |
+| **RF07.3** | **Exportar Reportes:** Descarga en PDF o CSV (Extension de RF07.1). | - | Pendiente |
 
 ### [cite_start]5.9 Gestión Entrenador - Entrenamientos (RF08) [cite: 25]
 | ID | Requisito | Reglas Asociadas | Estado Actual |
 | :--- | :--- | :--- | :--- |
 | **RF08.1** | **Crear Planes:** Diseñar sesiones para su equipo. | - | Pendiente |
 | **RF08.2** | **Consultar Planes:** Ver el listado y detalles de los planes creados. | - | Pendiente |
-| **RF08.3** | **Editar/Eliminar Planes** Modificar ejercicios o borrar planes obsoletos. | - | Pendiente |
-| **RF08.4** | **Asignar Sesiones:** Vincular plan a categoría/jugador/equipo. | - | Pendiente |
-| **RF08.5** | **Tomar Asistencia:** Registrar presencia en cancha. | BR13 | Pendiente |
+| **RF08.3** | **Editar/Eliminar Planes** Modificar ejercicios o borrar planes obsoletos (Extension de RF08.2). | - | Pendiente |
+| **RF08.4** | **Asignar Sesiones:** Vincular plan a categoría/jugador/equipo (Incluye opcion de notificar a jugadores o acudientes). | - | Pendiente |
+| **RF08.5** | **Tomar Asistencia:** Registrar presencia en cancha (Incluye validacion obligatoria del estado financiero). | BR13 | Pendiente |
 
 ### [cite_start]5.10 Gestión Entrenador - Jugadores (RF09) [cite: 25, 26]
 | ID | Requisito | Reglas Asociadas | Estado Actual |
 | :--- | :--- | :--- | :--- |
-| **RF09.1** | **Consultar Perfil:** Ver datos técnicos, físicos y médicos (Incluye opcion de buscar por nombre o filtarr por categoria). | BR11 (IMC) | **[IMPLEMENTADO]** |
+| **RF09.1** | **Consultar Perfil:** Ver datos técnicos, físicos y médicos (Incluye verificacion obligatoria de alert IMC y opcion de buscar/filtrar por categoria/posicion). | BR11 (IMC) | **[IMPLEMENTADO]** |
 | **RF09.2** | **Registrar Observaciones:** Notas tácticas sobre el jugador (Incluye opcion de enviar notificacion directa al acudiente). | - | Pendiente |
 | **RF09.3** | **Calificar Rendimiento:** Asignar puntajes periódicos. | - | Pendiente |
 
 ### [cite_start]5.11 Gestión Entrenador - Partidos (RF10) [cite: 26, 27]
 | ID | Requisito | Reglas Asociadas | Estado Actual |
 | :--- | :--- | :--- | :--- |
-| **RF10.1** | **Crear Convocatorias:** Notificar a jugadores/acudientes. | BR07, BR10, BR12 | Pendiente |
-| **RF10.2** | **Definir Alineaciones:** Estrategia pre-partido. | - | Pendiente |
-| **RF10.3** | **Registrar Post-Partido:** Resultados y estadísticas. | BR08 | Pendiente |
+| **RF10.1** | **Crear Convocatorias:** Seleccionar jugadores para el partido (Incluye validaciones obligatorias de reglas deportivas y opcion de notificar a jugadores/acudientes). | BR07, BR10, BR12 | Pendiente |
+| **RF10.2** | **Consultar Convocatoria:** Ver el listado y detalle de convocatorias. | - | Pendiente |
+| **RF10.3** | **Editar/Eliminar Convocatoria:** Modificar lista o cancelar convocatoria. (Extensiones de RF10.2. Editar incluye validaciones deportivas). | BR07, BR10, BR12 | Pendiente |
+| **RF10.4** | **Definir Alineaciones:** Estrategia pre-partido. | - | Pendiente |
+| **RF10.5** | **Registrar Post-Partido:** Resultados y estadísticas (Incluye validacion obligatoria de marcadores). | BR08 | Pendiente |
 
 ### [cite_start]5.12 Comunicación (RF11) [cite: 27]
 | ID | Requisito | Reglas Asociadas | Estado Actual |
 | :--- | :--- | :--- | :--- |
-| **RF11.1** | **Enviar Mensajes:** Notificaciones a jugadores/acudientes. | - | Pendiente |
-| **RF11.2** | **Recibir Mensajes:** Confirmaciones de asistencia. | - | Pendiente |
+| **RF11.1** | **Consultar Mensajes:** Ver la bandeja de entrada y salida (Todos los roles). (Incluye opcion de buscar/filtrar chats) | - | Pendiente |
+| **RF11.2** | **Enviar Mensajes:** Crear y enviar nuevas notificaciones. (Aplicar validacion de permisos de destinatario). | BR17 (Permisos Chat) | Pendiente |
+| **RF11.3** | **Responder Mensajes:** Contestar confirmaciones de asistencias o consultas (Extension de RF11.1) . | - | Pendiente |
+| **RF11.4** | **Eliminar Mensajes:** Limpiar la bandeja de entrada (Borrado logico por seguridad). (Extension de RF11.1) | - | Pendiente |
 
 ### [cite_start]5.13 Reportes de Rendimiento (RF12) [cite: 28]
 | ID | Requisito | Reglas Asociadas | Estado Actual |
