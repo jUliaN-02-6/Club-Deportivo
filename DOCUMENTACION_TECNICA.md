@@ -185,8 +185,9 @@ Deportista: Solo puede enviar mensajes a la Administración y a sus Entrenadores
 ### [cite_start]5.13 Reportes de Rendimiento (RF12) [cite: 28]
 | ID | Requisito | Reglas Asociadas | Estado Actual |
 | :--- | :--- | :--- | :--- |
-| **RF12.1** | **Reporte Individual:** Progreso de un jugador específico. | - | Pendiente |
-| **RF12.2** | **Reporte Grupal:** Métricas generales del equipo. | - | Pendiente |
+| **RF12.1** | **Consultar Reportes de Rendimiento:** Visualizar metricas fisicas, tecnicas y tacticas. (Incluye opcion de filtrar y exportar). | - | Pendiente |
+| **RF12.** | **Filtrar Reportes:** Por jugador especifico (individual) o por categoria (Grupal). (Extension de RF12.1). | - | Pendiente |
+| **RF12.** | **Exportar Reportes:** Descargar en PDF/Excel para entreagr a padres o directivos. (Extension  de RF12.1). | - | Pendiente |
 
 ### [cite_start]5.14 Módulo Deportista - Perfil (RF13) [cite: 28]
 | ID | Requisito | Reglas Asociadas | Estado Actual |
