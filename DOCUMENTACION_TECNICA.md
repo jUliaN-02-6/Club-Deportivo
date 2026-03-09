@@ -193,7 +193,7 @@ Deportista: Solo puede enviar mensajes a la Administración y a sus Entrenadores
 | ID | Requisito | Reglas Asociadas | Estado Actual |
 | :--- | :--- | :--- | :--- |
 | **RF13.1** | **Consultar Perfil:** Ver datos personales, fisicos (IMC) y deportivos (categoria/estado actual). | BR04, BR09 ,BR11, BR12 | **[IMPLEMENTADO]** |
-| **RF13.2** | **Actualizar Datos:** Editar info de contacto no sensible (Extension de RF1). | - | Pendiente |
+| **RF13.2** | **Actualizar Datos:** Editar info de contacto no sensible (Extension de RF13.1). | - | Pendiente |
 | **RF13.3** | **Cambiar Contraseña:** Actualizar credenciales de acceso. (Extensiones de RF13.1 Incluye encriptacion obligatoria). | BR02 | Pendiente |
 
 ### [cite_start]5.15 Módulo Deportista - Calendario (RF14) [cite: 29]
@@ -203,14 +203,13 @@ Deportista: Solo puede enviar mensajes a la Administración y a sus Entrenadores
 | **RF14.2** | **Filtrar por Entrenamiento:** Consultar fechas y horas de practica. (Extension de RF14.1) | - | Pendiente |
 | **RF14.3** | **Filtrar por Partidos:** Consultar convocatoria y resultados historicos. (Extension de RF14.1) | - | Pendiente |
 
-### [cite_start]5.16 Módulo Deportista - Seguimiento (RF15-RF16-RF17) [cite: 29, 30]
+### [cite_start]5.16 Módulo Deportista - Seguimiento (RF15) [cite: 29, 30]
 | ID | Requisito | Reglas Asociadas | Estado Actual |
 | :--- | :--- | :--- | :--- |
 | **RF15.1** | **Consultar Rendimiento:** Visualizar el progreso general del jugador. | - | Pendiente |
 | **RF15.2** | **Ver Observaciones:** Leer feedback tactico y notas del entrenador. (Extension de RF15.1) | - | Pendiente |
-| **RF16.1** | **Buzón de Mensajes:** Comunicados del club. | - | Pendiente |
-| **RF16.2** | **Notificaciones:** Alertas de eventos en tiempo real. | - | Pendiente |
-| **RF17.1** | **Cerrar Sesión:** Salida segura del sistema. | - | **[IMPLEMENTADO]** |
+| **RF15.3** | **Ver Estadisticas:** Consultar metriscas de goles, asistencias y estado fisico. (Extension de RF15.1) | - | Pendiente |
+
 
 ### 5.17 Módulo Acudiente (Nuevo - RF18)
 | ID | Requisito | Reglas Asociadas | Estado Actual |
