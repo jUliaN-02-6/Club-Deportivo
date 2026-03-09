@@ -192,7 +192,7 @@ Deportista: Solo puede enviar mensajes a la Administración y a sus Entrenadores
 ### [cite_start]5.14 Módulo Deportista - Perfil (RF13) [cite: 28]
 | ID | Requisito | Reglas Asociadas | Estado Actual |
 | :--- | :--- | :--- | :--- |
-| **RF13.1** | **Consultar Perfil:** Ver categoría, posición y stats. | BR04, BR11 | **[IMPLEMENTADO]** |
+| **RF13.1** | **Consultar Perfil:** Ver datos personales, fisicos (IMC) y deportivos (categoria/estado actual). | BR04, BR09 ,BR11, BR12 | **[IMPLEMENTADO]** |
 | **RF13.2** | **Actualizar Datos:** Editar info de contacto no sensible. | - | Pendiente |
 
 ### [cite_start]5.15 Módulo Deportista - Calendario (RF14) [cite: 29]
