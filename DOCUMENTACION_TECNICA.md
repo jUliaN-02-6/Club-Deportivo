@@ -214,9 +214,10 @@ Deportista: Solo puede enviar mensajes a la Administración y a sus Entrenadores
 ### 5.17 Módulo Acudiente (Nuevo - RF18)
 | ID | Requisito | Reglas Asociadas | Estado Actual |
 | :--- | :--- | :--- | :--- |
-| **RF18.1** | **Consultar Acudido:** Ver perfil del hijo (Solo lectura). | BR03 | **[IMPLEMENTADO]** |
-| **RF18.2** | **Notificaciones:** Recibir alertas de pagos y partidos. | - | Pendiente |
-| **RF18.3** | **Pagos:** Ver estado de cuenta y deudas. | BR13, BR14 | Pendiente |
+| **RF18.1** | **Consultar Perfil Propio:** Ver y actualizar datos de contacto del acudiente o cambiar contraseña. (Cambio de credenciales incluye encriptacion). | - | Pendiente |
+| **RF18.2** | **Consultar Jugador Vinculado:** Ver el perfil del hijo, su calendario de partidos/entrenamientos y su rendimiento (Incluye validacion obligatoria de bloque administrativo). | BR03, BR14 | **[IMPLEMENTADO]** |
+| **RF18.3** | **Consultar Estado de Cuenta:** Ver histotrial de pagos, deudas pendientes y descargar recibos en PDF. | BR13, BR14 | Pendiente |
+
 
 ---
 
