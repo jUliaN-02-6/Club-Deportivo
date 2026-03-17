@@ -88,8 +88,7 @@ Deportista: Solo puede enviar mensajes a la Administración y a sus Entrenadores
 | ID | Requisito | Reglas Asociadas | Estado Actual |
 | :--- | :--- | :--- | :--- |
 | **RF00.1** | **Autenticación:** (Iniciar sesión) Acceder al sistema (Incluye validacion con credenciales JWT. Incluye opciones de bloquear cuenta tras 3 fallos y recuperar contraseña) . | BR02 | **[IMPLEMENTADO]** |
-| **RF00.2** | **Registro:** (Crear cuenta) Crear usuario nuevo. (incluye validacion de datos unicos y calculo de categorias. Incluye opcion de buscar y vincular jugador si el rol es Acudiente). | BR01, BR03, BR04 | **[IMPLEMENTADO]** |
-| **RF00.3** | **Recuperación:** Restablecer contraseña vía "¿Olvidaste tu contraseña?". | BR02 | Pendiente |
+| **RF00.2** | **Recuperación:** Restablecer contraseña vía "¿Olvidaste tu contraseña?". | BR02 | Pendiente |
 
 ### [cite_start]5.2 Gestión de Usuarios - Admin (RF01) [cite: 15, 16, 17]
 | ID | Requisito | Reglas Asociadas | Estado Actual |
